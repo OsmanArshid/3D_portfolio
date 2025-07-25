@@ -2,7 +2,7 @@
   POPUP
 </div> */}
 import { Canvas } from "@react-three/fiber"; 
-import { Suspense } from "react";
+import { useState, Suspense } from "react";
 import Loader from "../components/Loader";
 import Island from "../models/Island";
 import Sky from "../models/Sky";
@@ -11,7 +11,11 @@ import Bird from "../models/Bird";
 
 
 const Home = () => {
-  const adjustIslandForScreenSize = () => {
+  const [isRotating, setIsRotating] = useState(false);
+
+  // ======================================================================================================================
+
+  const adjustIslandForScreenSize = () => {    
       let ScreenScale = null;
       let ScreenPosition = [0, -6.5, -43];
       let rotation = [0.1, 4.7, 0];
@@ -28,14 +32,35 @@ const Home = () => {
 
     const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
 
+// ======================================================================================================================
 
+    const adjustPlaneForScreenSize = () => {    
+        let ScreenScale, ScreenPosition;
+
+        if (window.innerWidth < 768) {
+          ScreenScale = [1.5, 1.5, 1.5];
+          ScreenPosition = [0, -1.5, 0];
+        }
+        
+        else {
+          ScreenScale = [3, 3, 3];
+          ScreenPosition = [0, -4, -4];
+        }
+
+        return [ScreenScale, ScreenPosition];
+      }
+
+      const [planeScale, planePosition] = adjustPlaneForScreenSize();
+
+// ======================================================================================================================
+// ======================================================================================================================
   return (
     <section className = 'w-full h-screen relative'>
       
       {/* Canvas is the ROOT component that sets up our entire 3D scene... 
       ALL 3D will be rendered here (the "Renderer" in the guide doc) */}
       <Canvas
-        className="w-full h-screen bg-transparent"
+        className= { `w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}` }
       
         // objects less than 0.1 and further from 1000 wont render
         camera={{near: 0.1, far: 1000}}> 
@@ -64,18 +89,28 @@ const Home = () => {
           />
           
           <Bird/>
+          
           <Sky />
+          
           <Island 
-          // really important to adjust these scales
+            // really important to adjust these scales
             scale = {islandScale}
-            position = {islandPosition}
+            position = {islandPosition} 
             rotation = {islandRotation}
+            isRotating = {isRotating}
+            setIsRotating = {setIsRotating}
           />
 
-          <Plane/>
+          <Plane
+            isRotating = {isRotating}
+            scale = {planeScale}
+            position = {planePosition}
+            rotation = {[0, 20, 0]}
+          />
       
         </Suspense>
       </Canvas>
+
     </section>
   )
 }

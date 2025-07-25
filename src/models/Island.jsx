@@ -15,11 +15,71 @@ import IslandScene from '../assets/3d/island.glb';
 import { use } from 'react';
 
 
-const Island = (props) => {
+const Island = (isRotating, setIsRotating, ...props) => {
   const islandRef = useRef();
-
   const { nodes, materials } = useGLTF(IslandScene)
   
+  
+  // now we have to get access to 3js rendered and viewport
+  const {gl, viewport} = useThree(); // this is a hook\
+
+
+  // now we use a ref to get last mouse x-position 
+  const lastX = useRef(0);
+
+  // Use a ref for rotation speed
+  const rotationSpeed = useRef(0);
+
+  // now going to use a damping factor, this plays a role of
+  // how fast the island will rotate/move when you scroll it
+  // and how much it moves after u've rotated
+  const dampingFactor = 0.95;
+
+// ===============================================================================================================
+  const handlePointerDown = (e) => {
+    // this means that the mouse will not affect other elements/functions
+    // on the screen, and only do what the func tells
+    e.stopPropagation();
+    e.preventDefault(); // so that it doesn't reload or does something else
+    setIsRotating(true);
+
+    // so now we will check if the user is on screen or PC using a mouse
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    
+    // last pos of the X, store it here
+    lastX.current = clientX;
+  }
+
+  const handlePointerUp = (e) => {
+    e.stopPropagation();
+    e.preventDefault(); 
+    setIsRotating(false);
+
+    // so now we will check if the user is on screen or PC using a mouse
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+    // checking the change in horizontal pos
+    const delta = (clientX - lastX.current) / viewport.width;
+
+    // we wanna update the island's rotation based on the mouse
+    islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+
+    // Update the reference for the last clientX position
+    lastX.current = clientX;
+
+    // Update the rotation speed
+    rotationSpeed.current = delta * 0.01 * Math.PI;
+  }
+
+  const handlePointerMove = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    if (isRotating) handlePointerUp(e);
+  }
+// ===============================================================================================================
+
+
   return (
     
     // idk why a.group --> this comes from react-spring 
