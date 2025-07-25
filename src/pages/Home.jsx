@@ -6,7 +6,8 @@ import { Suspense } from "react";
 import Loader from "../components/Loader";
 import Island from "../models/Island";
 import Sky from "../models/Sky";
-
+import Plane from "../models/Plane";
+import Bird from "../models/Bird";
 
 
 const Home = () => {
@@ -62,7 +63,7 @@ const Home = () => {
             intensity={1}
           />
           
-
+          <Bird/>
           <Sky />
           <Island 
           // really important to adjust these scales
@@ -70,6 +71,8 @@ const Home = () => {
             position = {islandPosition}
             rotation = {islandRotation}
           />
+
+          <Plane/>
       
         </Suspense>
       </Canvas>
