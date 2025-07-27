@@ -6,7 +6,7 @@ import { useGLTF, useAnimations } from "@react-three/drei" ;
 const Plane = ({isRotating, ...props}) => {
   const ref = useRef();
 
-  const { scene, animations } = useGLTF(planeScene);
+  const { scene, animations } = useGLTF(planeScene); // taking out the animations from the model
   const { actions } = useAnimations(animations, ref) // actions is directly taking in the animations from the model
 
   useEffect(() => {
