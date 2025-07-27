@@ -12,10 +12,9 @@ import { useFrame, useThree } from '@react-three/fiber'
 import {a} from '@react-spring/three'
 
 import IslandScene from '../assets/3d/island.glb';
-import { use } from 'react';
 
 
-const Island = (isRotating, setIsRotating, ...props) => {
+const Island = ({isRotating, setIsRotating, setCurrentStage, ...props}) => {
   const islandRef = useRef();
 
   const { nodes, materials } = useGLTF(IslandScene)
@@ -76,7 +75,7 @@ const Island = (isRotating, setIsRotating, ...props) => {
       lastX.current = clientX;
 
       // Update the rotation speed
-      rotationSpeed.current = delta * 0.01 * Math.PI;
+      rotationSpeed.current = delta * 0.0008 * Math.PI;
     }
   }
 
@@ -136,6 +135,7 @@ const Island = (isRotating, setIsRotating, ...props) => {
       if (Math.abs(rotationSpeed.current) < 0.001) { // if the speed becomes less than this, its gonna stop
         rotationSpeed.current = 0;
       }
+      
       islandRef.current.rotation.y += rotationSpeed.current;
     } 
     
@@ -163,24 +163,24 @@ const Island = (isRotating, setIsRotating, ...props) => {
 
 
       // Set the current stage based on the island's orientation, and stop at different stages
-      // switch (true) {
-      //   case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-      //     setCurrentStage(4);
-      //     break;
-      //   case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-      //     setCurrentStage(3);
-      //     break;
-      //   case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
-      //     setCurrentStage(2);
-      //     break;
-      //   case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-      //     setCurrentStage(1);
-      //     break;
-      //   default:
-      //     setCurrentStage(null);
+      switch (true) {
+        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
+          setCurrentStage(4);
+          break;
+        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
+          setCurrentStage(3);
+          break;
+        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
+          setCurrentStage(2);
+          break;
+        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
+          setCurrentStage(1);
+          break;
+        default:
+          setCurrentStage(null);
       }
     }
-  );
+  });
 
 // ===============================================================================================================
 // ==============================================================================================================

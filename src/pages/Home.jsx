@@ -92,11 +92,13 @@ const Home = () => {
           
           <Bird/>
           
-          <Sky />
+          <Sky 
+            isRotating = {isRotating}
+          />
           
           <Island 
             // really important to adjust these scales
-  
+            setCurrentStage={setCurrentStage}
             isRotating={isRotating}
             setIsRotating={setIsRotating}
            
