@@ -11,26 +11,28 @@ import Bird from "../models/Bird";
 
 
 const Home = () => {
+  const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
+  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
   // ======================================================================================================================
 
-  const adjustIslandForScreenSize = () => {    
-      let ScreenScale = null;
-      let ScreenPosition = [0, -6.5, -43];
-      let rotation = [0.1, 4.7, 0];
+  const adjustIslandForScreenSize = () => {
+    let screenScale, screenPosition;
 
-      if (window.innerWidth < 768) {
-        ScreenScale = [0.9, 0.9, 0.9];
-      }
-      else {
-        ScreenScale = [1, 1, 1];
-      }
-
-      return [ScreenScale, ScreenPosition, rotation];
+    if (window.innerWidth < 768) {
+      screenScale = [0.9, 0.9, 0.9];
+      screenPosition = [0, -6.5, -43.4];
+    } else {
+      screenScale = [1, 1, 1];
+      screenPosition = [0, -6.5, -43.4];
     }
 
-    const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
+    return [screenScale, screenPosition];
+  };
+
+
+  const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
 // ======================================================================================================================
 
@@ -94,11 +96,13 @@ const Home = () => {
           
           <Island 
             // really important to adjust these scales
-            scale = {islandScale}
-            position = {islandPosition} 
-            rotation = {islandRotation}
-            isRotating = {isRotating}
-            setIsRotating = {setIsRotating}
+  
+            isRotating={isRotating}
+            setIsRotating={setIsRotating}
+           
+            position={islandPosition}
+            rotation={[0.1, 4.7077, 0]}
+            scale={islandScale}
           />
 
           <Plane
