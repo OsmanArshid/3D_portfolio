@@ -1,6 +1,4 @@
-{/* <div className = 'absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-  POPUP
-</div> */}
+
 import { Canvas } from "@react-three/fiber"; 
 import { useState, Suspense } from "react";
 import Loader from "../components/Loader";
@@ -9,6 +7,7 @@ import Sky from "../models/Sky";
 import Plane from "../models/Plane";
 import Bird from "../models/Bird";
 import Dino from "../models/Dino";
+import HomeInfo from "../components/HomeInfo";
 
 
 const Home = () => {
@@ -78,6 +77,10 @@ const Home = () => {
 // ======================================================================================================================
   return (
     <section className = 'w-full h-screen relative'>
+
+      <div className = 'absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
+        {currentStage && <HomeInfo currentStage = {currentStage}/>}
+      </div>
       
       {/* Canvas is the ROOT component that sets up our entire 3D scene... 
       ALL 3D will be rendered here (the "Renderer" in the guide doc) */}
