@@ -8,6 +8,7 @@ import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Plane from "../models/Plane";
 import Bird from "../models/Bird";
+import Dino from "../models/Dino";
 
 
 const Home = () => {
@@ -53,6 +54,25 @@ const Home = () => {
       }
 
       const [planeScale, planePosition] = adjustPlaneForScreenSize();
+  
+// ======================================================================================================================
+
+    const adjustDinoForScreenSize = () => {
+      let screenScale, screenPosition;
+
+      if (window.innerWidth < 768) {
+        screenScale = [0.8, 0.8, 0.8];
+        screenPosition = [0, -2, -5]; // Mobile: closer and lower
+      } else {
+        screenScale = [1.2, 1.2, 1.2];
+        screenPosition = [0, -3, -8]; // Desktop: bigger and further back
+      }
+
+      return [screenScale, screenPosition];
+    };
+
+    const [dinoScale, dinoPosition] = adjustDinoForScreenSize();
+
 
 // ======================================================================================================================
 // ======================================================================================================================
@@ -96,6 +116,12 @@ const Home = () => {
             isRotating = {isRotating}
           />
           
+          {/* <Dino 
+            position={dinoPosition}
+            scale={dinoScale}
+            rotation={[0, 0, 0]}
+          /> */}
+
           <Island 
             // really important to adjust these scales
             setCurrentStage={setCurrentStage}
