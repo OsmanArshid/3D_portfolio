@@ -6,7 +6,7 @@ import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Plane from "../models/Plane";
 import Bird from "../models/Bird";
-import Dino from "../models/Dino";
+// import Dino from "../models/Dino";
 import HomeInfo from "../components/HomeInfo";
 
 
