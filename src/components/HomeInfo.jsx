@@ -46,19 +46,19 @@ const HomeInfo = ({ currentStage }) => {
   }}
 >
   <div className="relative z-10 text-center">
-    <h1 className="sm:text-xl sm:leading-snug font-medium font-poppins text-center text-[#4b4a4a]">
+    <h1 className="text-xl sm:leading-snug font-medium font-poppins text-center text-[#4b4a4a]">
       Hi, I'm
       <span
-        className="font-semibold mx-2 text-white animate-pulse"
+        className="font-semibold text-xl mx-2 text-[#4b4a4a] animate-pulse"
         style={{
-          textShadow: "0 0 10px rgba(245, 158, 11, 0.8), 0 0 20px rgba(217, 119, 6, 0.6), 0 0 30px rgba(180, 83, 9, 0.4)"
+          textShadow: "0 0 8px rgba(255, 255, 255, 1), 0 0 16px rgba(255, 255, 255, 0.8), 0 0 24px rgba(255, 255, 255, 0.6)"
         }}
       >
         Osman
       </span>
       <span className="inline-block animate-bounce">🦕</span>
       <br />
-      <span className="text-sm mt-2 inline-block">A Software Engineer from Pakistan (🇵🇰)</span>
+      <span className="text-lg mt-2 inline-block">A Software Engineer from Pakistan (🇵🇰)</span>
     </h1>
   </div>
 
