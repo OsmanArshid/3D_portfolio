@@ -33,14 +33,14 @@ const Bird = () => {
         // Update the X and Z positions based on the direction
         if (birdRef.current.rotation.y === 0) {
           // Moving forward
-          birdRef.current.position.x += 0.01;
-          birdRef.current.position.z -= 0.01;
+          birdRef.current.position.x += 0.005;
+          birdRef.current.position.z -= 0.005;
         } 
         
         else {
           // Moving backward
-          birdRef.current.position.x -= 0.01;
-          birdRef.current.position.z += 0.01;
+          birdRef.current.position.x -= 0.005;
+          birdRef.current.position.z += 0.005;
         }
       }); 
   
