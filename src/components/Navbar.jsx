@@ -66,9 +66,9 @@ const Navbar = () => {
                       <br /> by Osman - a developer who designs with vibes, not
                       just code.
                     </p>
-                    <p className="text-red-800 text-xs italic">
+                    {/* <p className="text-red-800 text-xs italic">
                       *Spoiler* - Contact page.
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               )}
