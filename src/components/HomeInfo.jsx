@@ -31,10 +31,10 @@ const HomeInfo = ({ currentStage }) => {
     return (
 <div
   ref={boxRef}
-  className={`relative backdrop-blur-xl border border-white/20 rounded-3xl p-8 mx-5 shadow-2xl transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 overflow-hidden cursor-pointer min-h-[135px] flex items-center justify-center ${
+  className={`relative bg-gradient-to-br from-purple-500/15 via-violet-600/10 to-purple-700/15 backdrop-blur-xl border border-white/20 rounded-3xl p-8 mx-5 shadow-2xl shadow-purple-500/20 transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-purple-500/30 overflow-hidden cursor-pointer min-h-[135px] flex items-center justify-center ${
     isHovered 
-      ? 'bg-gradient-to-br from-purple-500/20 via-violet-600/15 to-purple-700/20 shadow-purple-500/30' 
-      : 'bg-white/5 shadow-gray-500/10'
+      ? 'bg-gradient-to-br from-purple-500/20 via-violet-600/15 to-purple-700/20' 
+      : ''
   }`}
   onMouseMove={handleMouseMove}
   onMouseEnter={handleMouseEnter}
@@ -42,7 +42,7 @@ const HomeInfo = ({ currentStage }) => {
   style={{
     boxShadow: isHovered
       ? "0 20px 60px rgba(139, 69, 255, 0.3), 0 8px 32px rgba(88, 28, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)"
-      : "0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+      : "0 8px 32px rgba(139, 69, 255, 0.2), 0 4px 16px rgba(88, 28, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
   }}
 >
   <div className="relative z-10 text-center">
@@ -58,7 +58,7 @@ const HomeInfo = ({ currentStage }) => {
       </span>
       <span className="inline-block animate-bounce">🦕</span>
       <br />
-      <span className="text-lg mt-2 inline-block">A Software Engineer from Pakistan (🇵🇰)</span>
+      <span className="text-sm mt-2 inline-block">A Software Engineer from Pakistan (🇵🇰)</span>
     </h1>
   </div>
 
@@ -98,7 +98,7 @@ const HomeInfo = ({ currentStage }) => {
       >
         <div className="relative z-10 text-center w-full">
           <p className="font-medium sm:text-xl text-center text-[#4b4a4a] font-poppins mb-6">
-            I may be a fresh grad, <br /> but I didn’t wait to start working
+            I may be a fresh grad, <br /> but I didn't wait to start working
           </p>
 
           <Link

@@ -12,12 +12,12 @@ const Navbar = () => {
     <header className="header relative">
       <NavLink
         to="/"
-        className="w-[130px] h-[50px] rounded-lg bg-white flex items-center justify-center font-bold shadow-md"
+        className="min-w-[130px] min-h-[50px] rounded-lg bg-white flex items-center justify-center font-bold shadow-md "
       >
         <p className="blue-gradient_text">Usman Arshid</p>
       </NavLink>
 
-      <nav className={`flex gap-7 font-medium text-lg items-center ${isHomepage ? 'ml-[300px]' : 'ml-[400px]'} transition-all duration-300`}>
+      <nav className={`flex gap-7 font-medium text-lg items-center ${isHomepage ? 'ml-[200px] xl:ml-[300px]' : 'ml-[200px] xl:ml-[400px]'} transition-all duration-300`}>
         <NavLink to="/about" className={({ isActive }) => (isActive ? "text-blue-500" : "text-black")}>
           About
         </NavLink>
@@ -26,9 +26,9 @@ const Navbar = () => {
           Projects
         </NavLink>
 
-        {/* Don't Hover Element - Only show on homepage */}
+        {/* Don't Hover Element - Only show on homepage and larger screens */}
         {isHomepage && (
-          <div className="relative">
+          <div className="relative hidden xl:block">
             <div
               className="relative"
               onMouseEnter={() => setShowHoverMessage(true)}
@@ -61,13 +61,13 @@ const Navbar = () => {
                       Congratulations! You hovered!
                     </h3>
                     <p className="text-[#4b4a4a] text-sm leading-relaxed mb-4">
-                      As a gift for hovering. I'll give you instructions. To move you may use only Left and Right arrow keys or your Mouse.
+                      As a gift for hovering. I'll give you instructions. <span className="text-red-900">This is a Desktop App.</span> To move, you may only use Left and Right arrow keys OR press drag Mouse.
                       <br />
-                      <br /> by Osman — a developer who designs with vibes, not
+                      <br /> by Osman - a developer who designs with vibes, not
                       just code.
                     </p>
                     <p className="text-red-800 text-xs italic">
-                      *Spolier* - Contact page.
+                      *Spoiler* - Contact page.
                     </p>
                   </div>
                 </div>
